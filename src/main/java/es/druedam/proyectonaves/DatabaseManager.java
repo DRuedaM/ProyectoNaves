@@ -1,4 +1,4 @@
-package es.druedam.navesqrgenerator;
+package es.druedam.proyectonaves;
 
 import java.sql.*;
 import java.util.ArrayList;

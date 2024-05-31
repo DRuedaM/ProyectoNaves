@@ -1,4 +1,4 @@
-package es.druedam.navesqrgenerator;
+package es.druedam.proyectonaves;
 
 public class Invitacion
 {
