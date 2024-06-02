@@ -33,14 +33,14 @@
                         <MenuItem mnemonicParsing="false" onAction="#enviarMail" text="Enviar MAIL y QR" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Datos">
+                <Menu mnemonicParsing="false" onAction="#deleteData" text="Datos">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Borrar todos los datos" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
-        <VBox fx:id="panelCrud" alignment="CENTER" disable="true" prefHeight="499.0" prefWidth="1000.0" visible="false" VBox.vgrow="ALWAYS">
+        <VBox fx:id="panelCrud" alignment="CENTER" prefHeight="499.0" prefWidth="600.0" visible="false" VBox.vgrow="ALWAYS">
             <children>
                 <SplitPane dividerPositions="0.298" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="600.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
                     <items>

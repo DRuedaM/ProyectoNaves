@@ -1,12 +1,15 @@
 package es.druedam.proyectonaves;
 
+import java.util.ArrayList;
+
 public class Invitacion
 {
 
     private String correo;
-    private String nombre;
+    private String nombre_alumno;
     private String curso;
-    private String codigo;
+    private ArrayList<String> listaCodigos;
+    private String codigoUnico;
     private boolean validado;
     private boolean enviado;
     private String fecha_validacion;
@@ -14,18 +17,24 @@ public class Invitacion
     public Invitacion(String correo, String nombre, String curso, String codigo, boolean validado, boolean enviado, String fecha_validacion)
     {
         this.correo = correo;
-        this.nombre = nombre;
+        this.nombre_alumno = nombre;
         this.curso = curso;
-        this.codigo = codigo;
+        this.codigoUnico = codigo;
         this.validado = validado;
         this.enviado = enviado;
         this.fecha_validacion = fecha_validacion;
     }
 
+
+    public Invitacion(String correo,  ArrayList<String> codigo) {
+        this.correo = correo;
+        this.listaCodigos = codigo;
+    }
+
     public Invitacion(String correo, String nombre, String curso)
     {
         this.correo = correo;
-        this.nombre = nombre;
+        this.nombre_alumno = nombre;
         this.curso = curso;
 
     }
@@ -39,12 +48,12 @@ public class Invitacion
         this.correo = correo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombre_alumno() {
+        return nombre_alumno;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre_alumno(String nombre_alumno) {
+        this.nombre_alumno = nombre_alumno;
     }
 
     public String getCurso() {
@@ -55,12 +64,12 @@ public class Invitacion
         this.curso = curso;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public ArrayList<String> getListaCodigos() {
+        return listaCodigos;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setListaCodigos(ArrayList<String> listaCodigos) {
+        this.listaCodigos = listaCodigos;
     }
 
     public boolean isValidado() {
@@ -85,5 +94,9 @@ public class Invitacion
 
     public void setFecha_validacion(String fecha_validacion) {
         this.fecha_validacion = fecha_validacion;
+    }
+
+    public String getCodigoUnico() {
+        return codigoUnico;
     }
 }

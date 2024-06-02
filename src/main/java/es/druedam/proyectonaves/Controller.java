@@ -4,12 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable
@@ -38,7 +40,13 @@ public class Controller implements Initializable
         newDialog.setContentText("Desea eliminar todos los datos de la base de datos?");
         newDialog.getDialogPane().getButtonTypes().add(ButtonType.YES);
         newDialog.getDialogPane().getButtonTypes().add(ButtonType.NO);
-        newDialog.show();
+
+        Optional<ButtonType> result = newDialog.showAndWait();
+        if(result.get() == ButtonType.YES)
+        {
+            System.out.println("Base de datos borrada");
+            DatabaseManager.borrarBaseDatos();
+        }
     }
 
     @FXML
@@ -48,33 +56,51 @@ public class Controller implements Initializable
         rellenarTabla();
     }
 
+
+
     @FXML
     public void crearAlumno()
     {
-        DatabaseManager.crearAlumno(new Invitacion(textCorreo.getText(), textNombre.getText(), textCurso.getText()), numInvitaciones.getValue());
+        Conexion.createAlumno(new Invitacion(textCorreo.getText(), textNombre.getText() , textCurso.getText()), numInvitaciones.getValue());
+        rellenarTabla();
     }
 
     @FXML
     public void eliminarAlumno()
     {
-        DatabaseManager.eliminarAlumno(textCorreo.getText());
+        Conexion.deleteAlumno(textCorreo.getText());
+        rellenarTabla();
     }
 
     @FXML
     public void modificarAlumno()
     {
         //DatabaseManager.modificarAlumno();
+        rellenarTabla();
     }
 
     @FXML
     public void leerAlumno()
     {
-        // DatabaseManager.leerAlumnos();
+        rellenarTabla();
+       /*Invitacion alumno = DatabaseManager.leerAlumno(textCorreo.getText());
+       textCorreo.setText(alumno.getCorreo());
+       textNombre.setText(alumno.getNombre());
+       textCurso.setText(alumno.getCurso());*/
+    }
+
+    @FXML
+    public void enviarMail()
+    {
+        EnviarMail.recogerDatosYEnviar();
     }
 
 
     public void rellenarTabla()
     {
+        crudTable.getColumns().clear();
+        crudTable.getItems().clear();
+
         TableColumn correo = new TableColumn("correo");
         TableColumn nombre_alumno = new TableColumn("nombre");
         TableColumn curso = new TableColumn("curso");
@@ -84,15 +110,14 @@ public class Controller implements Initializable
         TableColumn fecha_validacion = new TableColumn("fecha_validacion");
         crudTable.getColumns().addAll(fecha_validacion,enviado,validado,codigo,curso,nombre_alumno,correo);
 
-        ArrayList<Invitacion> listaInvitacion;
-        listaInvitacion = DatabaseManager.leerAlumnos();
+        ArrayList<Invitacion> listaInvitacion= Conexion.leerAlumnos();
 
         ObservableList<Invitacion> data = FXCollections.observableArrayList(listaInvitacion);
 
         correo.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("correo"));
-        nombre_alumno.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("nombre"));
+        nombre_alumno.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("nombre_alumno"));
         curso.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("curso"));
-        codigo.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("codigo"));
+        codigo.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("codigoUnico"));
         validado.setCellValueFactory(new PropertyValueFactory<Invitacion,Boolean>("validado"));
         enviado.setCellValueFactory(new PropertyValueFactory<Invitacion,Boolean>("enviado"));
         fecha_validacion.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("fecha_validacion"));
@@ -106,4 +131,5 @@ public class Controller implements Initializable
         valueFactory.setValue(0);
         numInvitaciones.setValueFactory(valueFactory);
     }
+
 }
