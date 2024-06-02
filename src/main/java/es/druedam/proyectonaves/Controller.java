@@ -45,7 +45,7 @@ public class Controller implements Initializable
         if(result.get() == ButtonType.YES)
         {
             System.out.println("Base de datos borrada");
-            DatabaseManager.borrarBaseDatos();
+            Conexion.borrarBaseDeDatos();
         }
     }
 

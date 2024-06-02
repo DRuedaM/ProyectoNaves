@@ -19,13 +19,13 @@ public class Conexion
 {
     private static String apiURL = "http://localhost:8080/api-lasnaves";
 
-    public static String sendQuery(String direccion, String tipoAccion)
+    public static String sendQuery(String direccion)
     {
         try
         {
             URL url = new URL(apiURL+direccion);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod(tipoAccion);
+            con.setRequestMethod("GET");
             con.setRequestProperty("Content-length", "0");
             int responseCode = con.getResponseCode();
 
@@ -182,7 +182,7 @@ public class Conexion
 
         try
         {
-            String consulta = Conexion.sendQuery("", "GET");
+            String consulta = Conexion.sendQuery("");
             Type listType = new TypeToken<ArrayList<Invitacion>>(){}.getType();
             listaInvitaciones = new Gson().fromJson(consulta, listType);
             for(Invitacion alumno: listaInvitaciones)
@@ -197,5 +197,72 @@ public class Conexion
             e.printStackTrace();
         }
         return listaInvitaciones;
+    }
+
+    public static ArrayList<Codigo> recogerAlumnos()
+    {
+        ArrayList<Codigo> listaInvitaciones = new ArrayList<>();
+        ArrayList<String> listaCodigosPorAlumno = new ArrayList<>();
+        try
+        {
+            String correos = sendQuery("/find-distinct-correos");
+            String[] listaCorreo = new Gson().fromJson(correos, String[].class);
+            System.out.println(listaCorreo.length);
+            for (String correo : listaCorreo)
+            {
+                System.out.println(correo);
+                URL url2 = new URL(apiURL + "/find-codigos/" + correo);
+                HttpURLConnection con2 = (HttpURLConnection) url2.openConnection();
+                con2.setRequestMethod("GET");
+                con2.setRequestProperty("Content-length", "0");
+                int responseCode2 = con2.getResponseCode();
+
+                if (responseCode2 == 200)
+                {
+                    System.out.println("Get request is sent to URL: " + url2 + " response code " + responseCode2);
+                    BufferedReader in2 = new BufferedReader(new InputStreamReader(con2.getInputStream()));
+                    String inputLine2;
+                    StringBuilder response2 = new StringBuilder();
+                    while ((inputLine2 = in2.readLine()) != null)
+                    {
+                        listaCodigosPorAlumno.add(inputLine2);
+                    }
+                    in2.close();
+                    listaInvitaciones.add(new Codigo(correo, new ArrayList<>(listaCodigosPorAlumno)));
+                    listaCodigosPorAlumno.clear();
+                }
+            }
+            return listaInvitaciones;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void borrarBaseDeDatos()
+    {
+        try
+        {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(apiURL+"/delete-all"))
+                    .DELETE()
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() == 200)
+            {
+                System.out.println("Base de datos borrada");
+            }
+            else
+            {
+                System.out.println("Error al eliminar la base de datos " + response.statusCode());
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

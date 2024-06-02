@@ -7,14 +7,17 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.Hashtable;
 
 public class QRGenerator
 {
-    public BufferedImage generarQR(String codigo, String nombreArchivo)
+    public File generarQR(String codigo, String nombreArchivo)
     {
         try
         {
@@ -31,7 +34,6 @@ public class QRGenerator
             int matrixWidth = byteMatrix.getWidth();
             BufferedImage image = new BufferedImage(matrixWidth, matrixWidth, BufferedImage.TYPE_INT_RGB);
             image.createGraphics();
-
 
             Graphics2D graphics = (Graphics2D) image.getGraphics();
             graphics.setColor(Color.WHITE);
@@ -50,13 +52,16 @@ public class QRGenerator
                 }
             }
 
+            //ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            //ImageIO.write(image, fileType, outputStream);
             ImageIO.write(image, fileType, qrFile);
+            return qrFile;
+            //return outputStream.toByteArray();
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
         return null;
-
     }
 }

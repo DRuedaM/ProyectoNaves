@@ -1,8 +1,14 @@
 package es.druedam.proyectonaves;
 
+
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.sql.DataSource;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
@@ -13,24 +19,26 @@ public class EnviarMail
     private static String passwordFrom = "npxr nktt usez xfwm";
 
     private static Session mSession;
-    private static MimeMessage mCorreo;
-    private static MimeBodyPart mimeBodyPart;
+    private static Message mCorreo;
+    private static MimeBodyPart mimeBodyPart = new MimeBodyPart();
 
     public static void recogerDatosYEnviar()
     {
-        ArrayList<Invitacion> listaInvitaciones = DatabaseManager.recogerAlumnos();
-        ArrayList<String> listaCodigos = new ArrayList<>();
+        ArrayList<Codigo> listaInvitaciones = Conexion.recogerAlumnos();
 
-        for(Invitacion alumno : listaInvitaciones)
+        for(Codigo alumno : listaInvitaciones)
         {
-            enviarMail(alumno.getCorreo(), alumno.getListaCodigos());
+            for(String codigo : alumno.getListaCodigos())
+            {
+                enviarMail(alumno.getCorreo(), alumno.getListaCodigos(), new QRGenerator().generarQR(codigo, alumno.getCorreo()));
+            }
         }
 
 
     }
 
 
-    private static void enviarMail(String direccionCorreo, ArrayList<String> listaCodigos)
+    private static void enviarMail(String direccionCorreo, ArrayList<String> listaCodigos, File QR)
     {
         try
         {
@@ -42,14 +50,20 @@ public class EnviarMail
 
             mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(direccionCorreo));
             mCorreo.setSubject("Invitaciones Graduación Las Naves 2024");
-            StringBuilder codigos = new StringBuilder();
-            for(String codigo : listaCodigos)
-            {
-                codigos.append(codigo).append(" ");
-            }
-            mCorreo.setText(codigos.toString(), "ISO-8859-1", "html");
 
-            //mimeBodyPart.attachFile();
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText("Hola, estas son tus invitaciones para la graduacion");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+
+            messageBodyPart = new MimeBodyPart();
+            FileDataSource source = new FileDataSource(QR);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName("boliviano.png");
+            multipart.addBodyPart(messageBodyPart);
+
+            mCorreo.setContent(multipart);
 
             Transport mTransport = mSession.getTransport("smtp");
             mTransport.connect(emailFrom, passwordFrom);
