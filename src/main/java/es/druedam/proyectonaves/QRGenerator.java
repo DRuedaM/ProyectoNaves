@@ -17,13 +17,13 @@ import java.util.Hashtable;
 
 public class QRGenerator
 {
-    public File generarQR(String codigo, String nombreArchivo)
+    public File generarQR(String codigo, String nombreArchivo, int index)
     {
         try
         {
             int size = 125;
             String fileType = "png";
-            File qrFile = new File(nombreArchivo + ".png");
+            File qrFile = new File("Invitaciones/"+ nombreArchivo + index + ".png");
 
             // Create the ByteMatrix for the QR-Code that encodes the given String
             Hashtable<EncodeHintType, ErrorCorrectionLevel> hintMap = new Hashtable<>();
@@ -52,11 +52,8 @@ public class QRGenerator
                 }
             }
 
-            //ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            //ImageIO.write(image, fileType, outputStream);
             ImageIO.write(image, fileType, qrFile);
             return qrFile;
-            //return outputStream.toByteArray();
         }
         catch(Exception e)
         {

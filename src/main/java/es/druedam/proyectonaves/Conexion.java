@@ -72,7 +72,7 @@ public class Conexion
                 {
                     createCodigo(new Codigo(
                             alumno.getCorreo(),
-                            alumno.getCorreo() + alumno.getNombre_alumno() + alumno.getCurso() + (i+cantidadCodigos)));
+                            alumno.getCorreo() + "&" + alumno.getNombre_alumno() + "&" + alumno.getCurso() + "&" + (i+cantidadCodigos)));
                 }
 
             }
@@ -222,14 +222,9 @@ public class Conexion
                     System.out.println("Get request is sent to URL: " + url2 + " response code " + responseCode2);
                     BufferedReader in2 = new BufferedReader(new InputStreamReader(con2.getInputStream()));
                     String inputLine2;
-                    StringBuilder response2 = new StringBuilder();
-                    while ((inputLine2 = in2.readLine()) != null)
-                    {
-                        listaCodigosPorAlumno.add(inputLine2);
-                    }
+                    ArrayList<String> listaCodigos = new Gson().fromJson(in2.readLine(), ArrayList.class);
                     in2.close();
-                    listaInvitaciones.add(new Codigo(correo, new ArrayList<>(listaCodigosPorAlumno)));
-                    listaCodigosPorAlumno.clear();
+                    listaInvitaciones.add(new Codigo(correo, listaCodigos));
                 }
             }
             return listaInvitaciones;

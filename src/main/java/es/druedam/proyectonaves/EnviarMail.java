@@ -25,20 +25,21 @@ public class EnviarMail
     public static void recogerDatosYEnviar()
     {
         ArrayList<Codigo> listaInvitaciones = Conexion.recogerAlumnos();
-
+        ArrayList<File> listaCodigos = new ArrayList<>();
         for(Codigo alumno : listaInvitaciones)
         {
+            int index = 0;
             for(String codigo : alumno.getListaCodigos())
             {
-                enviarMail(alumno.getCorreo(), alumno.getListaCodigos(), new QRGenerator().generarQR(codigo, alumno.getCorreo()));
+                listaCodigos.add(new QRGenerator().generarQR(codigo, alumno.getCorreo(), index++));
             }
+            enviarMail(alumno.getCorreo(), alumno.getListaCodigos(), new ArrayList<>(listaCodigos));
+            listaCodigos.clear();
         }
-
-
     }
 
 
-    private static void enviarMail(String direccionCorreo, ArrayList<String> listaCodigos, File QR)
+    private static void enviarMail(String direccionCorreo, ArrayList<String> listaCodigos, ArrayList<File> listaQRS)
     {
         try
         {
@@ -49,19 +50,24 @@ public class EnviarMail
             mCorreo.setFrom(new InternetAddress(emailFrom));
 
             mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(direccionCorreo));
-            mCorreo.setSubject("Invitaciones Graduación Las Naves 2024");
+            mCorreo.setSubject("Invitaciones Graduación Las Naves Salesianos 2024 (24 Mayo)");
 
             BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText("Hola, estas son tus invitaciones para la graduacion");
+            messageBodyPart.setText("Hola, estas son tus invitaciones para la graduación");
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
 
-            messageBodyPart = new MimeBodyPart();
-            FileDataSource source = new FileDataSource(QR);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName("boliviano.png");
-            multipart.addBodyPart(messageBodyPart);
+            int index = 0;
+            for(File qr : listaQRS)
+            {
+                messageBodyPart = new MimeBodyPart();
+                FileDataSource source = new FileDataSource(qr);
+                messageBodyPart.setDataHandler(new DataHandler(source));
+                messageBodyPart.setFileName("InvitacionGraduacion2024_" + index++ + ".png");
+                multipart.addBodyPart(messageBodyPart);
+            }
+
 
             mCorreo.setContent(multipart);
 
