@@ -7,14 +7,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable
+public class Controller extends Window implements Initializable
 {
     @FXML
     private TableView<Invitacion> crudTable;
@@ -56,8 +60,6 @@ public class Controller implements Initializable
         rellenarTabla();
     }
 
-
-
     @FXML
     public void crearAlumno()
     {
@@ -75,7 +77,6 @@ public class Controller implements Initializable
     @FXML
     public void modificarAlumno()
     {
-        //DatabaseManager.modificarAlumno();
         rellenarTabla();
     }
 
@@ -83,10 +84,6 @@ public class Controller implements Initializable
     public void leerAlumno()
     {
         rellenarTabla();
-       /*Invitacion alumno = DatabaseManager.leerAlumno(textCorreo.getText());
-       textCorreo.setText(alumno.getCorreo());
-       textNombre.setText(alumno.getNombre());
-       textCurso.setText(alumno.getCurso());*/
     }
 
     @FXML
@@ -123,6 +120,14 @@ public class Controller implements Initializable
         fecha_validacion.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("fecha_validacion"));
 
         crudTable.setItems(data);
+    }
+
+    @FXML
+    public void seleccionarFichero()
+    {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(this);
+        CSVParser.ParseFile(selectedFile);
     }
 
     @Override

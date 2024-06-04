@@ -21,11 +21,11 @@
     <children>
         <MenuBar maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="600.0">
             <menus>
-                <Menu mnemonicParsing="false" text="Alumno">
+                <Menu mnemonicParsing="false" text="Datos">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#openPanelCrud" text="CRUD" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Importar Datos" />
+                        <MenuItem mnemonicParsing="false" onAction="#seleccionarFichero" text="Importar Datos" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="QR">
@@ -33,7 +33,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#enviarMail" text="Enviar MAIL y QR" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" onAction="#deleteData" text="Datos">
+                <Menu mnemonicParsing="false" onAction="#deleteData" text="Borrar Datos">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Borrar todos los datos" />
                     </items>
@@ -44,7 +44,7 @@
             <children>
                 <SplitPane dividerPositions="0.298" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="600.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <AnchorPane fx:id="anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                             <cursor>
                                 <Cursor fx:constant="DEFAULT" />
                             </cursor>

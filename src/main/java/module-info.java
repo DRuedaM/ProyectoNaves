@@ -10,6 +10,7 @@ module es.druedam.proyectonaves {
     requires java.net.http;
     requires activation;
 
+
     opens es.druedam.proyectonaves to javafx.fxml, com.google.gson;
     exports es.druedam.proyectonaves;
 }

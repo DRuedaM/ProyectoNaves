@@ -13,6 +13,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("CRUD.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Proyecto Naves");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
