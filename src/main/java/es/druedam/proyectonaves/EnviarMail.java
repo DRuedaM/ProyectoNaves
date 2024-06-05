@@ -4,13 +4,12 @@ package es.druedam.proyectonaves;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.*;
-import javax.sql.DataSource;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Properties;
 
 public class EnviarMail
@@ -75,13 +74,13 @@ public class EnviarMail
             mTransport.connect(emailFrom, passwordFrom);
             mTransport.sendMessage(mCorreo, mCorreo.getRecipients(Message.RecipientType.TO));
             mTransport.close();
+
+            Conexion.updateCorreoEnviado(direccionCorreo);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
-
     }
 
     private static Properties getProperties() {

@@ -148,6 +148,32 @@ public class Conexion
         }
     }
 
+    public static void updateCorreoEnviado(String correo)
+    {
+        try
+        {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .PUT(HttpRequest.BodyPublishers.ofString(correo))
+                    .uri(URI.create(apiURL + "/correo-enviado/" + correo))
+                    .header("Content-Type", "application/json")
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode() == 200)
+            {
+                System.out.println("Correo enviado y marcado");
+            }
+            else
+            {
+                System.out.println("Error al enviar marcado de correo enviado " + response.statusCode());
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 
 
     public static void deleteAlumno(String correo)
