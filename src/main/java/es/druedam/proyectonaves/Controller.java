@@ -32,7 +32,11 @@ public class Controller extends Window implements Initializable
     private TextField textCurso;
     @FXML
     private Spinner<Integer> numInvitaciones;
+    @FXML
+    public static TextField textClave;
 
+    @FXML
+    public static TextField textCorreoGmail;
 
     @FXML
     public void deleteData()

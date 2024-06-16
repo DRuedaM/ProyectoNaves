@@ -4,11 +4,12 @@ module es.druedam.proyectonaves {
     requires java.desktop;
     requires java.sql;
     requires com.google.zxing;
-    requires mail;
+    requires jakarta.mail;
+    requires org.eclipse.angus.mail;
     requires mysql.connector.j;
     requires com.google.gson;
     requires java.net.http;
-    requires activation;
+    requires jakarta.activation;
 
 
     opens es.druedam.proyectonaves to javafx.fxml, com.google.gson;

@@ -1,21 +1,23 @@
 package es.druedam.proyectonaves;
 
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import jakarta.activation.DataHandler;
+import jakarta.activation.FileDataSource;
+import jakarta.mail.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
+
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Properties;
 
 public class EnviarMail
 {
-    private static String emailFrom = "davidruedamartin26@gmail.com";
-    private static String passwordFrom = "npxr nktt usez xfwm";
+    private static String emailFrom = "intranet@salesianosalcala.com";
+    private static String passwordFrom = "mvga mbdh spmm rybs";
 
     private static Session mSession;
     private static Message mCorreo;
@@ -23,6 +25,8 @@ public class EnviarMail
 
     public static void recogerDatosYEnviar()
     {
+        //emailFrom = Controller.textCorreoGmail.getText();
+        //passwordFrom = Controller.textClave.getText();
         ArrayList<Codigo> listaInvitaciones = Conexion.recogerAlumnos();
         ArrayList<File> listaCodigos = new ArrayList<>();
         for(Codigo alumno : listaInvitaciones)

@@ -40,7 +40,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <VBox fx:id="panelCrud" alignment="CENTER" prefHeight="499.0" prefWidth="600.0" visible="false" VBox.vgrow="ALWAYS">
+        <VBox fx:id="panelCrud" alignment="CENTER" prefHeight="499.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
             <children>
                 <SplitPane dividerPositions="0.298" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="600.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
                     <items>
@@ -90,6 +90,8 @@
                                         <Button mnemonicParsing="false" onAction="#leerAlumno" text="Leer" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                                     </children>
                                 </GridPane>
+                        <TextField fx:id="textClave" layoutX="63.0" layoutY="143.0" text="iiss zsaf gjyu sahd" />
+                        <TextField fx:id="textCorreoGmail" layoutX="59.0" layoutY="78.0" text="intranet@salesianosalcala.com" />
                             </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
