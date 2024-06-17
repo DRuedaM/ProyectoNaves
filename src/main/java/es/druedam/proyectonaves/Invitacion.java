@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 public class Invitacion
 {
-
     private String correo;
     private String nombre_alumno;
     private String curso;
-    private ArrayList<String> listaCodigos;
-    private String codigoUnico;
+    private String codigo;
     private boolean validado;
     private boolean enviado;
     private String fecha_validacion;
@@ -19,16 +17,16 @@ public class Invitacion
         this.correo = correo;
         this.nombre_alumno = nombre;
         this.curso = curso;
-        this.codigoUnico = codigo;
+        this.codigo = codigo;
         this.validado = validado;
         this.enviado = enviado;
         this.fecha_validacion = fecha_validacion;
     }
 
 
-    public Invitacion(String correo,  ArrayList<String> codigo) {
+    public Invitacion(String correo,  String codigo) {
         this.correo = correo;
-        this.listaCodigos = codigo;
+        this.codigo = codigo;
     }
 
     public Invitacion(String correo, String nombre, String curso)
@@ -36,7 +34,6 @@ public class Invitacion
         this.correo = correo;
         this.nombre_alumno = nombre;
         this.curso = curso;
-
     }
 
 
@@ -64,12 +61,12 @@ public class Invitacion
         this.curso = curso;
     }
 
-    public ArrayList<String> getListaCodigos() {
-        return listaCodigos;
+    public String getListaCodigos() {
+        return codigo;
     }
 
-    public void setListaCodigos(ArrayList<String> listaCodigos) {
-        this.listaCodigos = listaCodigos;
+    public void setListaCodigos(String listaCodigos) {
+        this.codigo = listaCodigos;
     }
 
     public boolean isValidado() {
@@ -96,7 +93,7 @@ public class Invitacion
         this.fecha_validacion = fecha_validacion;
     }
 
-    public String getCodigoUnico() {
-        return codigoUnico;
+    public String getCodigo() {
+        return codigo;
     }
 }

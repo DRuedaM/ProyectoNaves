@@ -32,11 +32,7 @@ public class Controller extends Window implements Initializable
     private TextField textCurso;
     @FXML
     private Spinner<Integer> numInvitaciones;
-    @FXML
-    public static TextField textClave;
 
-    @FXML
-    public static TextField textCorreoGmail;
 
     @FXML
     public void deleteData()
@@ -116,7 +112,7 @@ public class Controller extends Window implements Initializable
         correo.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("correo"));
         nombre_alumno.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("nombre_alumno"));
         curso.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("curso"));
-        codigo.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("codigoUnico"));
+        codigo.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("codigo"));
         validado.setCellValueFactory(new PropertyValueFactory<Invitacion,Boolean>("validado"));
         enviado.setCellValueFactory(new PropertyValueFactory<Invitacion,Boolean>("enviado"));
         fecha_validacion.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("fecha_validacion"));

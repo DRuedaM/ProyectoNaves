@@ -211,12 +211,6 @@ public class Conexion
             String consulta = Conexion.sendQuery("");
             Type listType = new TypeToken<ArrayList<Invitacion>>(){}.getType();
             listaInvitaciones = new Gson().fromJson(consulta, listType);
-            for(Invitacion alumno: listaInvitaciones)
-            {
-                System.out.println(alumno.getCorreo());
-                System.out.println(alumno.getNombre_alumno());
-            }
-
         }
         catch (Exception e)
         {
