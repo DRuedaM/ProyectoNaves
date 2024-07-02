@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -8,99 +8,164 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.druedam.proyectonaves.Controller">
-    <children>
-        <MenuBar maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="600.0">
-            <menus>
-                <Menu mnemonicParsing="false" text="Datos">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#openPanelCrud" text="CRUD" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#seleccionarFichero" text="Importar Datos" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="QR">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#enviarMail" text="Enviar MAIL y QR" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" onAction="#deleteData" text="Borrar Datos">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Borrar todos los datos" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-        <VBox fx:id="panelCrud" alignment="CENTER" prefHeight="499.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
-            <children>
-                <SplitPane dividerPositions="0.298" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="600.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
-                    <items>
-                        <AnchorPane fx:id="anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                            <cursor>
-                                <Cursor fx:constant="DEFAULT" />
-                            </cursor>
-                            <children>
-                                <GridPane layoutY="199.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="185.0" prefWidth="294.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="60.6666259765625" minHeight="10.0" prefHeight="60.6666259765625" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="43.3333740234375" minHeight="10.0" prefHeight="19.3333740234375" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <Label text="Correo" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                        <Label text="Nombre" GridPane.halignment="CENTER" />
-                                        <Label text="Curso" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                        <Label text="Invitaciones" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                        <TextField fx:id="textCorreo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="157.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                        <TextField fx:id="textNombre" maxWidth="-Infinity" prefHeight="25.0" prefWidth="129.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                        <TextField fx:id="textCurso" maxWidth="-Infinity" prefHeight="25.0" prefWidth="94.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                        <Spinner fx:id="numInvitaciones" maxWidth="-Infinity" prefHeight="25.0" prefWidth="77.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                    </children>
-                                </GridPane>
-                                <GridPane layoutX="-13.0" layoutY="432.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="301.0">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <Button mnemonicParsing="false" onAction="#crearAlumno" text="Crear" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                        <Button mnemonicParsing="false" onAction="#eliminarAlumno" text="Eliminar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                        <Button mnemonicParsing="false" onAction="#modificarAlumno" text="Modificar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                        <Button mnemonicParsing="false" onAction="#leerAlumno" text="Leer" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                    </children>
-                                </GridPane>
-                        <TextField fx:id="textClave" layoutX="63.0" layoutY="143.0" text="iiss zsaf gjyu sahd" />
-                        <TextField fx:id="textCorreoGmail" layoutX="59.0" layoutY="78.0" text="intranet@salesianosalcala.com" />
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                            <children>
-                                <TableView fx:id="crudTable" layoutX="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="697.0" AnchorPane.topAnchor="0.0" />
-                            </children>
-                        </AnchorPane>
-                    </items>
-                </SplitPane>
-            </children></VBox>
-    </children>
-</VBox>
+<BorderPane fx:id="panelCrud" minHeight="-Infinity" prefHeight="689.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.druedam.proyectonaves.Controller">
+   <top>
+      <MenuBar maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="Datos">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openPanelCrud" text="CRUD" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#seleccionarFichero" text="Importar Datos" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="QR">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#enviarMail" text="Enviar MAIL y QR" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" onAction="#deleteData" text="Borrar Datos">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Borrar todos los datos" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <right>
+            <VBox prefHeight="725.0" prefWidth="404.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="35.0" prefWidth="106.0" text="Correo">
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textCorreoGmail" text="intranet@salesianosalcala.com">
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="195.0" text="Contraseña correo">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="textClave" text="iiss zsaf gjyu sahd">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="78.0" text="Asunto">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="textAsunto" text="Invitaciones Graduación Las Naves Salesianos 2024 (24 Mayo)">
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="112.0" text="Contenido">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea fx:id="textContent" prefHeight="100.0" prefWidth="427.0" text="Hola, estas son tus invitaciones para la graduación">
+                     <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="109.0" prefWidth="432.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="60.6666259765625" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="43.3333740234375" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Correo" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Nombre" GridPane.halignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Curso" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Invitaciones" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textCorreo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="157.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <TextField fx:id="textNombre" maxWidth="-Infinity" prefHeight="25.0" prefWidth="129.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <TextField fx:id="textCurso" maxWidth="-Infinity" prefHeight="25.0" prefWidth="94.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Spinner fx:id="numInvitaciones" maxWidth="-Infinity" prefHeight="25.0" prefWidth="110.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+                  <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="301.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#crearAlumno" prefHeight="51.0" prefWidth="135.0" text="Crear" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#eliminarAlumno" prefHeight="51.0" prefWidth="130.0" text="Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </right>
+         <center>
+            <TableView fx:id="crudTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="744.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

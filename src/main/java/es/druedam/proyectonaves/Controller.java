@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -22,7 +23,7 @@ public class Controller extends Window implements Initializable
     private TableView<Invitacion> crudTable;
 
     @FXML
-    private VBox panelCrud;
+    private BorderPane panelCrud;
 
     @FXML
     private TextField textCorreo;
@@ -33,6 +34,14 @@ public class Controller extends Window implements Initializable
     @FXML
     private Spinner<Integer> numInvitaciones;
 
+    @FXML
+    public TextField textCorreoGmail;
+    @FXML
+    public TextField textClave;
+    @FXML
+    public TextField textAsunto;
+    @FXML
+    public TextArea textContent;
 
     @FXML
     public void deleteData()
@@ -87,7 +96,7 @@ public class Controller extends Window implements Initializable
     @FXML
     public void enviarMail()
     {
-        EnviarMail.recogerDatosYEnviar();
+        EnviarMail.recogerDatosYEnviar(textCorreoGmail.getText(), textClave.getText(), textAsunto.getText(), textContent.getText());
     }
 
 
@@ -135,4 +144,12 @@ public class Controller extends Window implements Initializable
         numInvitaciones.setValueFactory(valueFactory);
     }
 
+
+    public TextField getTextCorreoGmail() {
+        return textCorreoGmail;
+    }
+
+    public TextField getTextClave() {
+        return textClave;
+    }
 }

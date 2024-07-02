@@ -23,10 +23,10 @@ public class EnviarMail
     private static Message mCorreo;
     private static MimeBodyPart mimeBodyPart = new MimeBodyPart();
 
-    public static void recogerDatosYEnviar()
+    public static void recogerDatosYEnviar(String textCorreoGmail, String textClave, String asunto, String contenido)
     {
-        //emailFrom = Controller.textCorreoGmail.getText();
-        //passwordFrom = Controller.textClave.getText();
+         emailFrom = textCorreoGmail;
+        passwordFrom = textClave;
         ArrayList<Codigo> listaInvitaciones = Conexion.recogerAlumnos();
         ArrayList<File> listaCodigos = new ArrayList<>();
         for(Codigo alumno : listaInvitaciones)
@@ -36,13 +36,13 @@ public class EnviarMail
             {
                 listaCodigos.add(new QRGenerator().generarQR(codigo, alumno.getCorreo(), index++));
             }
-            enviarMail(alumno.getCorreo(), alumno.getListaCodigos(), new ArrayList<>(listaCodigos));
+            enviarMail(alumno.getCorreo(), alumno.getListaCodigos(), new ArrayList<>(listaCodigos), asunto, contenido);
             listaCodigos.clear();
         }
     }
 
 
-    private static void enviarMail(String direccionCorreo, ArrayList<String> listaCodigos, ArrayList<File> listaQRS)
+    private static void enviarMail(String direccionCorreo, ArrayList<String> listaCodigos, ArrayList<File> listaQRS, String asunto, String contenido)
     {
         try
         {
@@ -53,10 +53,10 @@ public class EnviarMail
             mCorreo.setFrom(new InternetAddress(emailFrom));
 
             mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(direccionCorreo));
-            mCorreo.setSubject("Invitaciones Graduación Las Naves Salesianos 2024 (24 Mayo)");
+            mCorreo.setSubject(asunto);
 
             BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText("Hola, estas son tus invitaciones para la graduación");
+            messageBodyPart.setText(contenido);
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);

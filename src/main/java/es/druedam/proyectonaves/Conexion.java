@@ -17,8 +17,7 @@ import java.util.ArrayList;
 
 public class Conexion
 {
-    private static String apiURL = "http://localhost:8080/api-lasnaves";
-
+    private static String apiURL = "http://172.26.2.2:8080/api-lasnaves";
     public static String sendQuery(String direccion)
     {
         try
