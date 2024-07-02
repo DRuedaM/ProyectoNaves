@@ -15,6 +15,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Hashtable;
 
+/**
+ * @author David Rueda
+ * <p>
+ *     Clase que genera archivos QR, los guarda en el sistema y los devuelve en el metodo
+ * </p>
+ */
 public class QRGenerator
 {
     public File generarQR(String codigo, String nombreArchivo, int index)

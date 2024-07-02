@@ -2,6 +2,12 @@ package es.druedam.proyectonaves;
 
 import java.util.ArrayList;
 
+/**
+ * @author David Rueda
+ * <p>
+ *     Clase para guardar el texto del codigo y el correo correspondiente
+ * </p>
+ */
 public class Codigo
 {
     private String correo;

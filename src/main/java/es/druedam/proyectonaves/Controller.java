@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 public class Controller extends Window implements Initializable
 {
     @FXML
-    private TableView<Invitacion> crudTable;
+    private TableView<Alumno> crudTable;
 
     @FXML
     private BorderPane panelCrud;
@@ -70,7 +70,7 @@ public class Controller extends Window implements Initializable
     @FXML
     public void crearAlumno()
     {
-        Conexion.createAlumno(new Invitacion(textCorreo.getText(), textNombre.getText() , textCurso.getText()), numInvitaciones.getValue());
+        Conexion.createAlumno(new Alumno(textCorreo.getText(), textNombre.getText() , textCurso.getText()), numInvitaciones.getValue());
         rellenarTabla();
     }
 
@@ -114,17 +114,17 @@ public class Controller extends Window implements Initializable
         TableColumn fecha_validacion = new TableColumn("fecha_validacion");
         crudTable.getColumns().addAll(fecha_validacion,enviado,validado,codigo,curso,nombre_alumno,correo);
 
-        ArrayList<Invitacion> listaInvitacion= Conexion.leerAlumnos();
+        ArrayList<Alumno> listaInvitacion= Conexion.leerAlumnos();
 
-        ObservableList<Invitacion> data = FXCollections.observableArrayList(listaInvitacion);
+        ObservableList<Alumno> data = FXCollections.observableArrayList(listaInvitacion);
 
-        correo.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("correo"));
-        nombre_alumno.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("nombre_alumno"));
-        curso.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("curso"));
-        codigo.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("codigo"));
-        validado.setCellValueFactory(new PropertyValueFactory<Invitacion,Boolean>("validado"));
-        enviado.setCellValueFactory(new PropertyValueFactory<Invitacion,Boolean>("enviado"));
-        fecha_validacion.setCellValueFactory(new PropertyValueFactory<Invitacion,String>("fecha_validacion"));
+        correo.setCellValueFactory(new PropertyValueFactory<Alumno,String>("correo"));
+        nombre_alumno.setCellValueFactory(new PropertyValueFactory<Alumno,String>("nombre_alumno"));
+        curso.setCellValueFactory(new PropertyValueFactory<Alumno,String>("curso"));
+        codigo.setCellValueFactory(new PropertyValueFactory<Alumno,String>("codigo"));
+        validado.setCellValueFactory(new PropertyValueFactory<Alumno,Boolean>("validado"));
+        enviado.setCellValueFactory(new PropertyValueFactory<Alumno,Boolean>("enviado"));
+        fecha_validacion.setCellValueFactory(new PropertyValueFactory<Alumno,String>("fecha_validacion"));
 
         crudTable.setItems(data);
     }

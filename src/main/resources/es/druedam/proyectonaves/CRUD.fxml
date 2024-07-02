@@ -81,7 +81,7 @@
                         <Insets left="25.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="textAsunto" text="Invitaciones Graduación Las Naves Salesianos 2024 (24 Mayo)">
+                  <TextField fx:id="textAsunto" text="Asunto del correo">
                      <VBox.margin>
                         <Insets bottom="25.0" left="25.0" right="25.0" />
                      </VBox.margin>
@@ -94,7 +94,7 @@
                         <Insets left="25.0" />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="textContent" prefHeight="100.0" prefWidth="427.0" text="Hola, estas son tus invitaciones para la graduación">
+                  <TextArea fx:id="textContent" prefHeight="100.0" prefWidth="427.0" text="Texto del correo">
                      <VBox.margin>
                         <Insets bottom="25.0" left="25.0" right="25.0" />
                      </VBox.margin>

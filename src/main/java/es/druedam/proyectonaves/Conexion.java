@@ -15,6 +15,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 
+/**
+ * @author David Rueda
+ * <p>
+ *     Clase que hace las consultas a los endpoint de la api y los devuelve
+ * </p>
+ */
 public class Conexion
 {
     private static String apiURL = "http://172.26.2.2:8080/api-lasnaves";
@@ -51,7 +57,7 @@ public class Conexion
 
     }
 
-    public static void createAlumno(Invitacion alumno, int numInvitaciones)
+    public static void createAlumno(Alumno alumno, int numInvitaciones)
     {
         try
         {
@@ -200,15 +206,15 @@ public class Conexion
         }
     }
 
-    public static ArrayList<Invitacion> leerAlumnos()
+    public static ArrayList<Alumno> leerAlumnos()
     {
         Conexion nuevaConexion = new Conexion();
-        ArrayList<Invitacion> listaInvitaciones = new ArrayList<>();
+        ArrayList<Alumno> listaInvitaciones = new ArrayList<>();
 
         try
         {
             String consulta = Conexion.sendQuery("");
-            Type listType = new TypeToken<ArrayList<Invitacion>>(){}.getType();
+            Type listType = new TypeToken<ArrayList<Alumno>>(){}.getType();
             listaInvitaciones = new Gson().fromJson(consulta, listType);
         }
         catch (Exception e)

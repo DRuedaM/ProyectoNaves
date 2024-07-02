@@ -16,8 +16,8 @@ import java.util.Properties;
 
 public class EnviarMail
 {
-    private static String emailFrom = "intranet@salesianosalcala.com";
-    private static String passwordFrom = "mvga mbdh spmm rybs";
+    private static String emailFrom = "correo";
+    private static String passwordFrom = "codigo gmail";
 
     private static Session mSession;
     private static Message mCorreo;
@@ -67,7 +67,7 @@ public class EnviarMail
                 messageBodyPart = new MimeBodyPart();
                 FileDataSource source = new FileDataSource(qr);
                 messageBodyPart.setDataHandler(new DataHandler(source));
-                messageBodyPart.setFileName("InvitacionGraduacion2024_" + index++ + ".png");
+                messageBodyPart.setFileName("NombreImagen_" + index++ + ".png");
                 multipart.addBodyPart(messageBodyPart);
             }
 
@@ -87,6 +87,7 @@ public class EnviarMail
         }
     }
 
+    //Metodo donde se definen las propiedades del correo
     private static Properties getProperties() {
         Properties mProperties = new Properties();
         mProperties.put("mail.smtp.host", "smtp.gmail.com");

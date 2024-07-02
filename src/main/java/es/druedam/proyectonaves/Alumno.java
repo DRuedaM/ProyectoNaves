@@ -1,8 +1,12 @@
 package es.druedam.proyectonaves;
 
-import java.util.ArrayList;
-
-public class Invitacion
+/**
+ * @author David Rueda
+ * <p>
+ *     Clase que guarda la informacion general del alumno
+ * </p>
+ */
+public class Alumno
 {
     private String correo;
     private String nombre_alumno;
@@ -12,7 +16,7 @@ public class Invitacion
     private boolean enviado;
     private String fecha_validacion;
 
-    public Invitacion(String correo, String nombre, String curso, String codigo, boolean validado, boolean enviado, String fecha_validacion)
+    public Alumno(String correo, String nombre, String curso, String codigo, boolean validado, boolean enviado, String fecha_validacion)
     {
         this.correo = correo;
         this.nombre_alumno = nombre;
@@ -24,12 +28,12 @@ public class Invitacion
     }
 
 
-    public Invitacion(String correo,  String codigo) {
+    public Alumno(String correo, String codigo) {
         this.correo = correo;
         this.codigo = codigo;
     }
 
-    public Invitacion(String correo, String nombre, String curso)
+    public Alumno(String correo, String nombre, String curso)
     {
         this.correo = correo;
         this.nombre_alumno = nombre;
